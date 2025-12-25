@@ -66,6 +66,19 @@ def delete_data(id):
     return jsonify({"message": "deleted!"}), 200
 
 
+## Now create POST LIST 
+@app.route('/postList', methods=['POST'])
+def post_list():
+    reqData=request.json
+    cursor=db.cursor()
+    query="INSERT INTO students (name,mark) VALUES (%s,%s)"
+    for student in reqData:
+        name=student.get('name')
+        mark=student.get('mark')
+        cursor.execute(query,(name,mark))
+    db.commit()
+    cursor.close()
+    return jsonify({"message": "list posted"}), 200
 
 
 
