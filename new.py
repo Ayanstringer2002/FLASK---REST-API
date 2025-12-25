@@ -1,7 +1,11 @@
+## Importing Dependencies
 from flask import Flask, request, jsonify
 import mysql.connector
+
+## This creates web application and it is the starting point of the application
 app = Flask(__name__)
 
+## This is for 
 db=mysql.connector.connect(
     host='localhost',
     user='root',
@@ -81,7 +85,7 @@ def post_list():
     return jsonify({"message": "list posted"}), 200
 
 
-
+## This is the driver code or main function
 if __name__=="__main__":
     print("connecting to db...")
     app.run()
