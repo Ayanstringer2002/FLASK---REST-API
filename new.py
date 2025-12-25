@@ -42,6 +42,20 @@ def fetchById(id):
     cursor.close()
     return jsonify(data)
 
+## Now Creating Update Route (BY Id)
+@app.route('/update',methods=['PUT'])
+def update_data():
+    id=request.json.get('id')
+    name=request.json.get('name')
+    mark=request.json.get('mark')
+    cursor=db.cursor()
+    query="UPDATE students SET name=%s,mark=%s WHERE id=%s"
+    cursor.execute(query,(name,mark,id))
+    db.commit()
+    cursor.close()
+    return jsonify({"message": "update"}), 200
+
+
 
 
 if __name__=="__main__":
