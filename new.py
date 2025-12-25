@@ -55,6 +55,17 @@ def update_data():
     cursor.close()
     return jsonify({"message": "update"}), 200
 
+## Now creating Delete Route (By Id)
+@app.route('/delete/<int:id>',methods=['DELETE'])
+def delete_data(id):
+    cursor=db.cursor()
+    query="DELETE FROM students where id=%s"
+    cursor.execute(query,(id,))
+    db.commit()
+    cursor.close()
+    return jsonify({"message": "deleted!"}), 200
+
+
 
 
 
