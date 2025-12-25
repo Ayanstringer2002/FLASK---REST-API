@@ -33,6 +33,15 @@ def fetch_all():
     cursor.close()
     return jsonify(rows)
 
+## Now Creating Fetching Route by ID
+@app.route('/fetchbyid/<int:id>', methods=['GET'])
+def fetchById(id):
+    cursor=db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM students WHERE id=%s", (id,))
+    data=cursor.fetchall()
+    cursor.close()
+    return jsonify(data)
+
 
 
 if __name__=="__main__":
